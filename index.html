@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        .todo-container {
+            width: 350px;
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .todo-container h2 {
+            text-align: center;
+            font-size: 28px;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+
+        #todoInput {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        #todoInput::placeholder {
+            color: #f1f1f1;
+        }
+
+        #todoInput:focus {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            box-shadow: 0px 4px 10px rgba(255, 65, 108, 0.4);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        #todolist {
+            margin-top: 15px;
+            padding: 0;
+        }
+
+        #todolist li {
+            list-style: none;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(6px);
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        #todolist button {
+            background: #ff4b2b;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0px 3px 10px rgba(255, 75, 43, 0.4);
+        }
+
+        #todolist button:hover {
+            background: #ff1e00;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="todo-container">
+        <h2>TO-DO List</h2>
+        <input type="text" id="todoInput" placeholder="Enter a Task">
+        <button onclick="add()">Add</button>
+        <ul id="todolist"></ul>
+    </div>
+
+    <script>
+        function add() {
+            let input = document.getElementById("todoInput");
+            let task = input.value.trim();
+
+            if (task === "") {
+                return alert("Please enter a task");
+            }
+
+            let li = document.createElement("li");
+            li.innerText = task;
+
+            let delbtn = document.createElement("button");
+            delbtn.innerText = "cancel";
+            delbtn.style.background = "yellow";
+
+            delbtn.onclick = function () {
+                li.remove();
+            };
+
+            li.appendChild(delbtn);
+            document.getElementById("todolist").appendChild(li);
+
+            input.value = "";
+        }
+    </script>
+</body>
+
+</html>
